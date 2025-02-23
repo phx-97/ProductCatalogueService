@@ -105,8 +105,10 @@ public class ProductController {
         return productDto;
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    private ResponseEntity<String> exceptionHandler(Exception exception){
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
-    }
+    /*
+        @ExceptionHandler(IllegalArgumentException.class)
+        private ResponseEntity<String> exceptionHandler(Exception exception){
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+     */
 }

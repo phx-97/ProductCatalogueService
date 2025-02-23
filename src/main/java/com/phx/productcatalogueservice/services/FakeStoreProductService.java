@@ -51,6 +51,7 @@ public class FakeStoreProductService implements IProductService {
     @Override
     public List<Product> getProducts() {
         RestTemplate restTemplate = restTemplateBuilder.build();
+        // https://angelikalanger.com/GenericsFAQ/FAQSections/ParameterizedTypes.html#FAQ310
         FakeStoreProductDto[] outputDtos = restTemplate.getForEntity("https://fakestoreapi.com/products",FakeStoreProductDto[].class).getBody();
         List<Product> products = new ArrayList<>();
         for(FakeStoreProductDto fakeStoreProductDto : outputDtos){
