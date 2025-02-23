@@ -40,7 +40,8 @@ public class ProductController {
 
             return new ResponseEntity<>(productDto, headers, HttpStatus.OK);
         } catch(IllegalArgumentException illegalArgumentException){
-            return new ResponseEntity<>(null,headers,HttpStatus.BAD_REQUEST);
+            //return new ResponseEntity<>(null,headers,HttpStatus.BAD_REQUEST);
+            throw illegalArgumentException;
         }
     }
 
@@ -102,5 +103,10 @@ public class ProductController {
         }
 
         return productDto;
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    private ResponseEntity<String> exceptionHandler(Exception exception){
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

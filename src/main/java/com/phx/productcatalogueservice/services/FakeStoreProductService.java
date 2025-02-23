@@ -1,5 +1,6 @@
 package com.phx.productcatalogueservice.services;
 
+import com.phx.productcatalogueservice.clients.FakeStoreApiClient;
 import com.phx.productcatalogueservice.dtos.FakeStoreProductDto;
 import com.phx.productcatalogueservice.models.Category;
 import com.phx.productcatalogueservice.models.Product;
@@ -20,10 +21,19 @@ import java.util.List;
 public class FakeStoreProductService implements IProductService {
 
     RestTemplateBuilder restTemplateBuilder;
-    public FakeStoreProductService(RestTemplateBuilder restTemplateBuilder){
+    FakeStoreApiClient fakeStoreApiClient;
+    public FakeStoreProductService(RestTemplateBuilder restTemplateBuilder, FakeStoreApiClient fakeStoreApiClient) {
         this.restTemplateBuilder = restTemplateBuilder;
+        this.fakeStoreApiClient = fakeStoreApiClient;
     }
 
+    @Override
+    public Product getProductById(Long id) {
+        FakeStoreProductDto fakeStoreProductDto = fakeStoreApiClient.getProductById(id);
+        return fakeStoreProductDto != null ? getProduct(fakeStoreProductDto) : null;
+    }
+
+    /*
     @Override
     public Product getProductById(Long id) {
         RestTemplate restTemplate = restTemplateBuilder.build();
@@ -35,6 +45,8 @@ public class FakeStoreProductService implements IProductService {
         }
         return null;
     }
+
+     */
 
     @Override
     public List<Product> getProducts() {
