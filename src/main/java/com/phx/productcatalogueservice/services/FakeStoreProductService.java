@@ -67,6 +67,12 @@ public class FakeStoreProductService implements IProductService {
 
     @Override
     public Product createProduct(Product product) {
+        FakeStoreProductDto input = getFakeStoreProductDto(product);
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity<FakeStoreProductDto> response = restTemplate.postForEntity("https://fakestoreapi.com/products", input, FakeStoreProductDto.class);
+        if(response.getStatusCode().is2xxSuccessful() && response.getBody() != null){
+            return getProduct(response.getBody());
+        }
         return null;
     }
 

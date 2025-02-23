@@ -19,12 +19,13 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@RequestMapping("/products")
 public class ProductController {
 
     @Autowired
     private IProductService productService;
 
-    @GetMapping("/products/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<ProductDto> getProductById(@PathVariable("id") Long productId){
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.add("called by","Mohammad Salman");
@@ -43,7 +44,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/products")
+    @GetMapping
     private List<ProductDto> getProducts(){
         List<Product> products = productService.getProducts();
         List<ProductDto> productDtos = new ArrayList<>();
@@ -55,7 +56,7 @@ public class ProductController {
     }
 
 
-    @PutMapping("/products/{id}")
+    @PutMapping("{id}")
     public ProductDto replaceProduct(@PathVariable("id") Long productId, @RequestBody ProductDto productDto){
         log.info("MSG[replaceProduct] requestBody: "+ productDto);
         Product response = productService.replaceProduct(getProduct(productDto), productId);
@@ -63,9 +64,10 @@ public class ProductController {
         return getProductDto(response);
     }
 
-    @PostMapping("/products")
-    public ProductDto createProduct(@RequestBody ProductDto product){
-        return null;
+    @PostMapping
+    public ProductDto createProduct(@RequestBody ProductDto productDto){
+        Product response = productService.createProduct(getProduct(productDto));
+        return getProductDto(response);
     }
 
     private Product getProduct(ProductDto productDto){
