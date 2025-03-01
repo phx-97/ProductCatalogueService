@@ -26,3 +26,9 @@ LAZY             SUBSELECT           Asked For Products - Queries - 2 select
 
 EAGER            SUBSELECT          Asked For Products - Queries - 2 select
                                     Not Asked For Products - Queries - 2 select
+
+
+Sub-sulect references
+Medium -- http://dheerajgopinath.medium.com/the-issue-with-fetchmode-subselect-and-onetomany-mappings-in-hibernate-and-jpa-f79724068897
+StackOverflow -- https://stackoverflow.com/questions/32984799/fetchmode-join-vs-subselect
+hibernate docs -- https://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html_single/#performance-fetching-subselect
