@@ -35,7 +35,7 @@ public class ProductController {
                 throw  new IllegalArgumentException("ProductId is invalid");
             }
 
-            productId++;
+            //productId++;
             Product product = productService.getProductById(productId);
             ProductDto productDto = getProductDto(product);
 
