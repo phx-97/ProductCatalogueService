@@ -5,6 +5,7 @@ import com.phx.productcatalogueservice.dtos.FakeStoreProductDto;
 import com.phx.productcatalogueservice.models.Category;
 import com.phx.productcatalogueservice.models.Product;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Primary
 public class FakeStoreProductService implements IProductService {
 
     RestTemplateBuilder restTemplateBuilder;
