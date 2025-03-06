@@ -4,6 +4,7 @@ import com.phx.productcatalogueservice.dtos.ProductDto;
 import com.phx.productcatalogueservice.models.Category;
 import com.phx.productcatalogueservice.models.Product;
 import com.phx.productcatalogueservice.services.IProductService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
@@ -97,13 +98,15 @@ class ProductControllerTest {
         assertEquals("Iphone12",response.getName());
     }
 
+    @DisplayName("Passing product id as 10 to controller and expect same on product service call as well, if this assert fails, that means value was not 1")
     @Test
     void Test_GetProductById_ServiceCalledWithValidArguments_RunSuccessfully() {
         // Arrange
         Long productId = 10L;
         Product product = new Product();
         product.setId(productId);
-        when(productService.getProductById(productId)).thenReturn(product);
+        //when(productService.getProductById(productId)).thenReturn(product);
+        when(productService.getProductById(any(Long.class))).thenReturn(product);
 
         // Act
         productController.getProductById(productId);
